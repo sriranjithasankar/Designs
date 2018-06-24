@@ -24,12 +24,13 @@ public class CalorieStore {
 
 
     /**
-     * This function takes the food itm name and the quantity that the user consumed
+     * This function takes the food itm name and the quantity that the user consumed on a given date
      * and stores it in the database so that it can later be used to calculate the calories consumed by the user.
      * @param name
      * @param quantity
+     * @param date
      */
-    public void addConsumedFoodItem(String name, int quantity) {
+    public void addConsumedFoodItem(String name, int quantity, String date) {
 
     }
 }

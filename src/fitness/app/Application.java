@@ -32,10 +32,10 @@ class Application {
                     store.addNewFoodItem(newItemData[0], Integer.parseInt(newItemData[1]));
                     break;
                 case "3":
-                    System.out.println("Enter consumed food item data (itemName<Space>quantity). eg: apple 2");
+                    System.out.println("Enter consumed food item data (itemName<Space>quantity<space>date). eg: apple 2 10/25/2018");
                     String consumedItemString = kb.nextLine();
                     String[] consumedItemData = consumedItemString.split(" ");
-                    store.addNewFoodItem(consumedItemData[0], Integer.parseInt(consumedItemData[1]));
+                    store.addConsumedFoodItem(consumedItemData[0], Integer.parseInt(consumedItemData[1]), consumedItemData[2]);
                     break;
             }
         }
