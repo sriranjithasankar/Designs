@@ -24,44 +24,19 @@ public class CalorieStore {
             String[] itemNameQuantityArray = itemNameQuantityPair.split(",");
             itemQuantity.put(itemNameQuantityArray[0], Integer.parseInt(itemNameQuantityArray[1]));
         }
-        int calories=0;
-        Integer quantity;
-        String item="";
+
+        int quantity;
+        String item;
+        int calories;
         int totalCalories=0;
-
-        for(int i = 0; i< itemQuantity.size(); i++){
-
-            quantity = itemQuantity.get(i);
-            for(Map.Entry entry: itemQuantity.entrySet()){
-                if(quantity.equals(entry.getValue())){
-                    item = entry.getKey().toString();
-                }
-            }
-            if(itemCalories.containsKey(item)){
-                calories = itemCalories.get(item);
-            }
-            totalCalories += calories*quantity;
+        for (Map.Entry entry: itemQuantity.entrySet()){
+            item = entry.getKey().toString();
+            quantity = itemQuantity.get(item);
+            calories = itemCalories.get(item);
+            totalCalories += quantity*calories;
         }
-        System.out.println(totalCalories);
 
-//        int[] quantity = new int[itemQuantity.size()];
-//        int[] calories = new int[itemCalories.size()];
-//        for(int i = 0; i<itemQuantity.size(); i++){
-//            quantity[i] = itemQuantity.get(i);
-//        }
-//
-//        for(int i = 0; i< itemCalories.size(); i++){
-//            calories[i] = itemCalories.get(i);
-//        }
-//
-//        int totalCalories=0;
-//        int caloriesForEachItem=0;
-//        for(int i = 0; i<quantity.length; i++){
-//            caloriesForEachItem = quantity[i] * calories[i];
-//            totalCalories += caloriesForEachItem;
-//        }
-//
-//        System.out.println(totalCalories);
+        System.out.println(totalCalories);
 
         return 0;
     }
