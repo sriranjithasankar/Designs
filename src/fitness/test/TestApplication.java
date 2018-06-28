@@ -14,28 +14,7 @@ public class TestApplication {
 
     public int singleTestNumber = 0;
 
-    public void executeTests() {
-        // TEST CASE 1
-        try {
-            testCase1();
-        } catch (Exception e) {
-            System.out.println("TestCase 1 - FAIL (Exception)");
-        }
-
-        // TEST CASE 2
-        try {
-            testCase2();
-        } catch (Exception e) {
-            System.out.println("TestCase 2 - FAIL (Exception)");
-        }
-
-        // TEST CASE 3
-        try {
-            testCase3();
-        } catch (Exception e) {
-            System.out.println("TestCase 3 - FAIL (Exception)");
-        }
-    }
+    private static final int TEST_CASE_COUNT = 4;
 
     /**
      * This test case verifies that the calorie store returns 0, when there is no calorie intake for a given date.
@@ -116,5 +95,72 @@ public class TestApplication {
             return;
         }
         System.out.println("TestCase 3 - PASS");
+    }
+
+    /**
+     * This test case verifies that the calorie store returns right result when same item is consumed multiple times during same day.
+     */
+    public void testCase4() {
+        if (singleTestNumber != 0 && singleTestNumber != 4) {
+            return;
+        }
+
+        CalorieStore store = new CalorieStore();
+
+        store.addNewFoodItem(apple, 100);
+        store.addNewFoodItem(banana, 300);
+        store.addNewFoodItem(chips, 450);
+        store.addNewFoodItem(donuts, 800);
+
+        store.addConsumedFoodItem(apple, 2, date_10_25_2018);
+        store.addConsumedFoodItem(apple, 1, date_10_25_2018);
+
+        int calories = store.calculateCalorieIntake(date_10_25_2018);
+        if (calories == 300) {
+            System.out.println("TestCase 4 - PASS");
+        } else {
+            System.out.println("TestCase 4 - FAIL");
+        }
+    }
+
+    public void executeTests() {
+        if (singleTestNumber != 0) {
+            runTestCaseWithTryCatchCheck(singleTestNumber);
+            return;
+        }
+
+        for (int i=1; i<=TEST_CASE_COUNT; i++) {
+            runTestCaseWithTryCatchCheck(i);
+        }
+    }
+
+    private void runTestCase(int number) {
+        switch (number) {
+            case 1:
+                testCase1();
+                break;
+            case 2:
+                testCase2();
+                break;
+            case 3:
+                testCase3();
+                break;
+            case 4:
+                testCase4();
+                break;
+        }
+    }
+
+    private void runTestCaseWithTryCatchCheck(int number) {
+        if (singleTestNumber != 0) {
+            runTestCase(number);
+            return;
+        } else {
+            try {
+                runTestCase(number);
+            } catch (Exception e) {
+                System.out.println("TestCase " + number + " - FAIL (Exception)");
+            }
+        }
     }
 }
