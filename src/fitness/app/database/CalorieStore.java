@@ -36,9 +36,7 @@ public class CalorieStore {
             totalCalories += quantity*calories;
         }
 
-        System.out.println(totalCalories);
-
-        return 0;
+        return totalCalories;
     }
 
     /**
