@@ -1,6 +1,11 @@
 package fitness.app.database;
 
+import java.util.*;
+import fitness.app.database.entity.ConsumedItem;
+
 public class CalorieStore {
+    private HashMap<String, Integer> itemToCalorieMap = new HashMap<>();
+    private HashMap<String, ArrayList<ConsumedItem>> dateToConsumedItemMap = new HashMap<>();
 
     /**
      * This function calculates the amount of calories consumed on the given data.
@@ -9,7 +14,17 @@ public class CalorieStore {
      * @return
      */
     public int calculateCalorieIntake(String date) {
-        return 0;
+        if (!dateToConsumedItemMap.containsKey(date)) {
+            return 0;
+        }
+        ArrayList<ConsumedItem> consumedItems = dateToConsumedItemMap.get(date);
+        int totalCalories = 0;
+        for (ConsumedItem item : consumedItems) {
+            int caloriesForItem = itemToCalorieMap.get(item.getName());
+            int consumedCalories = item.getQuantity() * caloriesForItem;
+            totalCalories += consumedCalories;
+        }
+        return totalCalories;
     }
 
     /**
@@ -19,7 +34,7 @@ public class CalorieStore {
      * @param calorieCount
      */
     public void addNewFoodItem(String name, int calorieCount) {
-
+        itemToCalorieMap.put(name, calorieCount);
     }
 
 
@@ -31,6 +46,15 @@ public class CalorieStore {
      * @param date
      */
     public void addConsumedFoodItem(String name, int quantity, String date) {
-
+        ConsumedItem newlyConsumedItem = new ConsumedItem(name, quantity, date);
+        ArrayList<ConsumedItem> consumedItems;
+        if (dateToConsumedItemMap.containsKey(date)) { // ie, user ate something previously on the same date
+            consumedItems = dateToConsumedItemMap.get(date);
+            consumedItems.add(newlyConsumedItem);
+        } else {
+            consumedItems = new ArrayList<>();
+            consumedItems.add(newlyConsumedItem);
+        }
+        dateToConsumedItemMap.put(date, consumedItems); // Update the map with newly consumed items.
     }
 }

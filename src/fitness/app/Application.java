@@ -23,7 +23,8 @@ class Application {
                 case "1":
                     System.out.println("Enter the date (mm/dd/yyyy) you wish to calculate calorie intake for..");
                     String date = kb.nextLine();
-                    store.calculateCalorieIntake(date);
+                    int calories = store.calculateCalorieIntake(date);
+                    System.out.println(calories);
                     break;
                 case "2":
                     System.out.println("Enter new food item data (itemName<Space>itemCalories). eg: apple 100");
