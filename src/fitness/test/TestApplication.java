@@ -2,8 +2,6 @@ package fitness.test;
 
 import fitness.app.database.CalorieStore;
 
-import java.util.HashSet;
-
 public class TestApplication {
 
     private String apple = "apple";
@@ -13,6 +11,8 @@ public class TestApplication {
 
     private String date_10_25_2018 = "10/25/2018";
     private String date_10_20_2018 = "10/20/2018";
+
+    public int singleTestNumber = 0;
 
     public void executeTests() {
         // TEST CASE 1
@@ -41,6 +41,10 @@ public class TestApplication {
      * This test case verifies that the calorie store returns 0, when there is no calorie intake for a given date.
      */
     public void testCase1() {
+        if (singleTestNumber != 0 && singleTestNumber != 1) {
+            return;
+        }
+
         CalorieStore store = new CalorieStore();
         int calories = store.calculateCalorieIntake(date_10_25_2018);
         if (calories == 0) {
@@ -54,6 +58,10 @@ public class TestApplication {
      * This test case verifies that the calorie store returns right result when it contains data for just a single date.
      */
     public void testCase2() {
+        if (singleTestNumber != 0 && singleTestNumber != 2) {
+            return;
+        }
+
         CalorieStore store = new CalorieStore();
 
         store.addNewFoodItem(apple, 100);
@@ -77,6 +85,10 @@ public class TestApplication {
      * This test case verifies that the calorie store returns right result when it contains data for multiple dates.
      */
     public void testCase3() {
+        if (singleTestNumber != 0 && singleTestNumber != 3) {
+            return;
+        }
+
         CalorieStore store = new CalorieStore();
 
         store.addNewFoodItem(apple, 100);

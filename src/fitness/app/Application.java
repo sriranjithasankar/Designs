@@ -28,6 +28,7 @@ class Application {
                 if (mode.equals("4")) {
                     System.out.println("Running test cases..");
                     TestApplication testApplication = new TestApplication();
+                    testApplication.singleTestNumber = 1;
                     testApplication.executeTests();
                     break;
                 }
