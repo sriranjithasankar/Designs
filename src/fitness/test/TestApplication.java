@@ -2,6 +2,8 @@ package fitness.test;
 
 import fitness.app.database.CalorieStore;
 
+import java.util.HashSet;
+
 public class TestApplication {
 
     private String apple = "apple";
@@ -13,9 +15,26 @@ public class TestApplication {
     private String date_10_20_2018 = "10/20/2018";
 
     public void executeTests() {
-        testCase1();
-        testCase2();
-        testCase3();
+        // TEST CASE 1
+        try {
+            testCase1();
+        } catch (Exception e) {
+            System.out.println("TestCase 1 - FAIL (Exception)");
+        }
+
+        // TEST CASE 2
+        try {
+            testCase2();
+        } catch (Exception e) {
+            System.out.println("TestCase 2 - FAIL (Exception)");
+        }
+
+        // TEST CASE 3
+        try {
+            testCase3();
+        } catch (Exception e) {
+            System.out.println("TestCase 3 - FAIL (Exception)");
+        }
     }
 
     /**
